@@ -64,7 +64,7 @@ export default function TextForm(props) {
             </div>
             <div className={`container my-3 text-${(props.mode.blueState === 'dark' || props.mode.greenState === 'dark')?'light':'dark'}`}>
                 <h2>Your Text Summary</h2>
-                <p>Above Text has {text.length} characters and {text.split(" ").length} words</p>
+                <p>Above Text has {text.length} characters and {text===""?0:text.replace(/\s+/g, ' ').trim().split(' ').length} words</p>
             </div>
         </>
     )
