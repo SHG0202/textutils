@@ -34,6 +34,7 @@ export default function TextForm(props) {
         var text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        document.getSelection().removeAllRanges()
         props.showAlert("Copied to clipboard", "success")
     }
 
@@ -51,16 +52,16 @@ export default function TextForm(props) {
         <>
             <div className={`container text-${(props.mode.blueState === 'dark' || props.mode.greenState === 'dark')?'light':'dark'}`}>
                 <div className="mb-3">
-                    <h2>{props.heading}</h2>
+                    <h2 className='mb-4'>{props.heading}</h2>
                     <textarea className="form-control" value={text} onChange={handelOnChange} 
-                    style={{backgroundColor: (props.mode.blueState === 'dark' || props.mode.greenState === 'dark')?'grey':'white',
+                    style={{backgroundColor: (props.mode.blueState === 'dark' || props.mode.greenState === 'dark')?'#13466e':'white',
                         color: (props.mode.blueState==='dark' || props.mode.greenState==='dark')?'white':'black'}} id="myBox" rows="8"></textarea>
                 </div>
-                <button className="btn btn-warning mx-2" onClick={changeToUpperClicked}>Convert to Uppercase</button>
-                <button className="btn btn-warning mx-2" onClick={changeToLowerClicked}>Convert to Lowercase</button>
-                <button className="btn btn-warning mx-2" onClick={changeToInverseClicked}>Inverse Case</button>
-                <button className="btn btn-warning mx-2" onClick={copyText}>Copy Text</button>
-                <button className="btn btn-warning mx-2" onClick={clearTextClicked}>Clear Text</button>
+                <button disabled={text.length===0} className="btn btn-warning mx-2 my-2" onClick={changeToUpperClicked}>Convert to Uppercase</button>
+                <button disabled={text.length===0} className="btn btn-warning mx-2 my-2" onClick={changeToLowerClicked}>Convert to Lowercase</button>
+                <button disabled={text.length===0} className="btn btn-warning mx-2 my-2" onClick={changeToInverseClicked}>Inverse Case</button>
+                <button disabled={text.length===0} className="btn btn-warning mx-2 my-2" onClick={copyText}>Copy Text</button>
+                <button disabled={text.length===0} className="btn btn-warning mx-2 my-2" onClick={clearTextClicked}>Clear Text</button>
             </div>
             <div className={`container my-3 text-${(props.mode.blueState === 'dark' || props.mode.greenState === 'dark')?'light':'dark'}`}>
                 <h2>Your Text Summary</h2>
